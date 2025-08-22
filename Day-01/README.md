@@ -1,9 +1,3 @@
-# ☁️ My GCP Learning Journey
-
-Welcome to my personal repository documenting my hands-on exploration of **Google Cloud Platform (GCP)**. This space is a mix of study notes, CLI experiments, and reflections as I build toward Cloud & DevOps mastery.
-
----
-
 ## 📅 Day 01: Introduction to Cloud & GCP
 
 ### 🔹 Key Concepts Covered
