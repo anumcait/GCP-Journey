@@ -110,10 +110,10 @@ Cloud providers:
 ```bash
 gcloud auth list
 gcloud config list
-
+```
 ---
 
 ### [🔗](https://github.com/anumcait/GCP-Journey/blob/main/Day-01/Mock%20Test.md) Ready for Mock Test
 
-----
+---
 ### [🔗](https://github.com/anumcait/GCP-Journey/blob/main/Day-01/Interview-Questions.md) Ready for Interview
