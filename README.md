@@ -3,6 +3,10 @@
 Welcome to my **personal GCP learning repo** 🚀  
 Here I document day-by-day progress as I explore **Cloud Computing** and **Google Cloud Platform (GCP)**.  
 
+## [Day-1 Introduction to Cloud & GCP] (https://www.github.com/anumcait/GCP-Journey/Day-01/GCP-Cloud-Basics.md)
+
+
+
 ---
 ## 📚 Repo Purpose
 
