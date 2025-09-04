@@ -72,64 +72,64 @@ What is meant by Shared Responsibility in cloud?
 
 ### ✅ Answers
 
-Cloud: A virtual space to store and run apps/data online.
+**Cloud:** A virtual space to store and run apps/data online.
 
-Cloud Computing: Delivery of IT services (servers, storage, apps) via the internet.
+**Cloud Computing:** Delivery of IT services (servers, storage, apps) via the internet.
 
-Difference (Cloud vs Traditional): Rent vs Buy, Auto-scale vs Manual setup.
+**Difference (Cloud vs Traditional):** Rent vs Buy, Auto-scale vs Manual setup.
 
-Benefits: Cost-effective, scalable, global reach, high availability.
+**Benefits:** Cost-effective, scalable, global reach, high availability.
 
-Pay-as-you-go: Pay only for the resources you consume.
+**Pay-as-you-go:** Pay only for the resources you consume.
 
-Public Cloud: Shared by all users. Example: Gmail, AWS, GCP.
+**Public Cloud:** Shared by all users. Example: Gmail, AWS, GCP.
 
-Private Cloud: Dedicated to one organization. Example: On-premises servers.
+**Private Cloud:** Dedicated to one organization. Example: On-premises servers.
 
-Hybrid Cloud: Combination of public and private.
+**Hybrid Cloud:** Combination of public and private.
 
-Difference: Public = shared, Private = exclusive, Hybrid = mix.
+**Difference:** Public = shared, Private = exclusive, Hybrid = mix.
 
-Why GCP: Google infra, AI/ML strengths, cost-friendly, easy to use.
+**Why GCP:** Google infra, AI/ML strengths, cost-friendly, easy to use.
 
-GCP Compute Services: Compute Engine, App Engine, Kubernetes Engine, Cloud Functions.
+**GCP Compute Services:** Compute Engine, App Engine, Kubernetes Engine, Cloud Functions.
 
-IAM in GCP: Identity and Access Management – controls permissions.
+**IAM in GCP:** Identity and Access Management – controls permissions.
 
-Cloud Storage: Object storage for files, backups, images.
+**Cloud Storage:** Object storage for files, backups, images.
 
-Cloud Shell: Browser-based terminal with gcloud pre-installed.
+**Cloud Shell:** Browser-based terminal with gcloud pre-installed.
 
-GCP Project: A logical container for resources, billing, and IAM.
+**GCP Project:** A logical container for resources, billing, and IAM.
 
-Virtualization: Creating multiple virtual resources from one physical resource.
+**Virtualization:** Creating multiple virtual resources from one physical resource.
 
-VM: Emulated computer with OS and apps.
+**VM:** Emulated computer with OS and apps.
 
-API: Rules for software-to-software communication.
+**API:** Rules for software-to-software communication.
 
-Regions: Geo areas with GCP data centers.
+**Regions:** Geo areas with GCP data centers.
 
-Zones: Subdivisions of regions for redundancy.
+**Zones:** Subdivisions of regions for redundancy.
 
-Scalability: Planned resource expansion.
+**Scalability:** Planned resource expansion.
 
-Elasticity: Automatic resource adjustment.
+**Elasticity:** Automatic resource adjustment.
 
-Agility: Speed to deploy and adapt.
+**Agility:** Speed to deploy and adapt.
 
-High Availability: 99.9% uptime, no downtime.
+**High Availability:** 99.9% uptime, no downtime.
 
-Fault Tolerance: Keeps working despite failures.
+**Fault Tolerance:** Keeps working despite failures.
 
-Disaster Recovery: Restores systems after disaster.
+**Disaster Recovery:** Restores systems after disaster.
 
-Load Balancing: Distributes traffic to multiple servers.
+**Load Balancing:** Distributes traffic to multiple servers.
 
-Scalability vs Elasticity: Scalability = capacity planning, Elasticity = auto-adjustment.
+**Scalability vs Elasticity:** Scalability = capacity planning, Elasticity = auto-adjustment.
 
-Fault Tolerance vs DR: Fault Tolerance = keep running, DR = recover after fail.
+**Fault Tolerance vs DR:** Fault Tolerance = keep running, DR = recover after fail.
 
-Load Balancing vs Auto-scaling: LB = distribute load, Auto-scaling = adjust number of servers.
+**Load Balancing vs Auto-scaling:** LB = distribute load, Auto-scaling = adjust number of servers.
 
-Shared Responsibility: Cloud provider secures infra, user secures apps/data.
+**Shared Responsibility:** Cloud provider secures infra, user secures apps/data.
