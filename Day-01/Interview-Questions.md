@@ -153,7 +153,7 @@ What is IAM in GCP and why is it important?
 What is Cloud Shell and when would you use it?
 
 
-# ☁️ Day-01: GCP Short Answer Questions & Answers
+# Short Answer Questions & Answers
 
 ---
 
@@ -311,5 +311,5 @@ What is Cloud Shell and when would you use it?
 
 ---
 
-✅ End of **Day-01: Real-Time Scenario Q&A**
+✅ End of **Real-Time Scenario Q&A**
 
