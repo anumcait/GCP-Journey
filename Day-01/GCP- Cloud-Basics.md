@@ -27,7 +27,7 @@ It’s like having a **powerful computer on the web** that you can use anytime w
 
 **Cloud computing** is a technology model that delivers **computing services over the internet**.  
 
-                                                 (or)
+
 
 Cloud computing means renting servers, databases, storage, and other services over the internet instead of owning them.  
 
