@@ -1,10 +1,10 @@
 ## 📝 GCP Day 1 – Mock Test
 ### Q1. Which of the following best describes Google Cloud Platform (GCP)?
 
-A. A collection of mobile apps for Android
-B. A set of cloud computing services running on Google’s infrastructure
-C. A hardware-based server setup by Google
-D. A social networking platform by Google
+- A. A collection of mobile apps for Android
+- B. A set of cloud computing services running on Google’s infrastructure
+- C. A hardware-based server setup by Google
+- D. A social networking platform by Google
 
 ### Q2. GCP provides infrastructure across multiple ________.
 
