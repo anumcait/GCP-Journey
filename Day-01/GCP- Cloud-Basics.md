@@ -14,15 +14,6 @@
 
 ---
 
-## 🌩️ What is Cloud Computing?
-Cloud computing means renting servers, databases, storage, and other services over the internet instead of owning them.  
-                                                  (or)
-Cloud computing allows users to access servers, storage, and databases over the internet—no need to own physical infrastructure.  
-
-👉 In simple words:  
-> "You pay only for what you use. No upfront investment, no maintenance headache."
-> *"Use resources on demand. No upfront costs. No maintenance headaches."*
-
 # ☁️ Basics of Cloud Computing
 ---
 ## 🔹 What is Cloud?
@@ -30,6 +21,39 @@ Cloud computing allows users to access servers, storage, and databases over the 
 The **cloud** is a vast, virtual space where you can **store files, run software, and access services** over the internet.  
 
 It’s like having a **powerful computer on the web** that you can use anytime without worrying about hardware.  
+
+
+## 🌩️ What is Cloud Computing?
+
+**Cloud computing** is a technology model that delivers **computing services over the internet**.  
+                                                 (or)
+Cloud computing means renting servers, databases, storage, and other services over the internet instead of owning them.  
+
+Instead of maintaining physical servers, users can access on-demand resources over the internet-no need to own physical infrastructure such as:  
+- Servers  
+- Storage  
+- Databases  
+- Applications  
+
+👉 In simple words:  
+> "You pay only for what you use. No upfront investment, no maintenance headache."
+> *"Use resources on demand. No upfront costs. No maintenance headaches."*
+
+---
+
+## 🔹 Cloud Models
+
+### 🌍 Public Cloud
+- **Definition:** Shared infrastructure for everyone.  
+- **Example:** Google Drive, Amazon Web Services (AWS).  
+
+### 🏢 Private Cloud
+- **Definition:** Cloud dedicated to a single organization.  
+- **Example:** A company running its own private servers.  
+
+### 🔀 Hybrid Cloud
+- **Definition:** A combination of both public and private cloud models.  
+- **Example:** A business using private cloud for sensitive data and public cloud for scalability.  
 
 ---
 
