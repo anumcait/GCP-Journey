@@ -5,13 +5,13 @@ Here I document day-by-day progress as I explore **Cloud Computing** and **Googl
 
 ### [🔗](https://github.com/anumcait/GCP-Journey/blob/main/Day-01/GCP-%20Cloud-Basics.md) Day-1 Introduction to Cloud & GCP 
 
-• What is Cloud Computing? Cloud vs Traditional IT
-• Why GCP? GCP vs AWS vs Azure (with honest comparison)
-• Cloud Vocabulary
-• Setup GCP free account
-• Understanding GCP Console and Cloud Shell
-• Mock Tests
-• Interview Questions
+- • What is Cloud Computing? Cloud vs Traditional IT
+- • Why GCP? GCP vs AWS vs Azure (with honest comparison)
+- • Cloud Vocabulary
+- • Setup GCP free account
+- • Understanding GCP Console and Cloud Shell
+- • Mock Tests
+- • Interview Questions
 
 ---
 ## 📚 Repo Purpose
