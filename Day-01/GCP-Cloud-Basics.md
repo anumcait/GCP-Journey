@@ -27,8 +27,6 @@ It’s like having a **powerful computer on the web** that you can use anytime w
 
 **Cloud computing** is a technology model that delivers **computing services over the internet**.  
 
-
-
 Cloud computing means renting servers, databases, storage, and other services over the internet instead of owning them.  
 
 Instead of maintaining physical servers, users can access on-demand resources over the internet-no need to own physical infrastructure such as:  
@@ -112,3 +110,10 @@ Cloud providers:
 ```bash
 gcloud auth list
 gcloud config list
+
+---
+
+### [🔗](https://github.com/anumcait/GCP-Journey/blob/main/Day-01/Mock%20Test.md) Ready for Mock Test
+
+----
+### [🔗](https://github.com/anumcait/GCP-Journey/blob/main/Day-01/Interview-Questions.md) Ready for Interview
