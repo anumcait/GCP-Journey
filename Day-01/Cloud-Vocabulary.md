@@ -27,6 +27,10 @@ A Virtual Machine (VM) is a software-based emulation of a physical computer, all
 ## 🔹 API (Application Programming Interface)
 **Definition:**  
 APIs are sets of rules and protocols that allow different software applications to communicate with each other.  
+For any application, in the world, there are 3 ways of accessing that application. i.e. 
+ - Access through user interface (Like browser to access)
+ - Access through CLI (Like command prompt or Powershell by giving relavent commands
+ - Access through API (Like programs Python, ruby interact with the application)
 
 **Real-World Example:**  
 - AWS provides **REST APIs** for services like S3 and EC2. A developer can call an API to **upload a file to S3** instead of logging into the console.  
@@ -36,7 +40,7 @@ APIs are sets of rules and protocols that allow different software applications 
 
 ## 🔹 Regions
 **Definition:**  
-Regions are **geographic locations** where cloud providers host data centers.  
+Regions are **geographic locations** where cloud providers host data centers [across the globe].  
 
 **Real-World Example:**  
 - AWS **us-east-1 (N. Virginia)**, **ap-south-1 (Mumbai)**, **eu-west-1 (Ireland)** are all regions.  
