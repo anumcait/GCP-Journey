@@ -57,7 +57,7 @@ Instead of maintaining physical servers, users can access on-demand resources ov
 - **Definition:** A combination of both public and private cloud models.  
 - **Example:** A business using private cloud for sensitive data and public cloud for scalability.  
 
-### [🔗](https://github.com/anumcait/GCP-Journey/blob/main/Day-01/GCP-%20Cloud-Vocabulary.md) Cloud Vocabulary That need to be familier
+### [🔗](https://github.com/anumcait/GCP-Journey/blob/main/Day-01/Cloud-Vocabulary.md) Cloud Vocabulary That need to be familier
 
 ---
 
