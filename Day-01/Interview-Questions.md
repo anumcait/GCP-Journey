@@ -1,6 +1,6 @@
 # ❓ All Possible Questions
 
-###🔹 Cloud & Basics
+### 🔹 Cloud & Basics
 
 What is Cloud?
 
@@ -12,7 +12,7 @@ What are the benefits of cloud computing?
 
 What is the pay-as-you-go model?
 
-###🔹 Cloud Types
+### 🔹 Cloud Types
 
 What is Public Cloud? Give examples.
 
@@ -22,7 +22,7 @@ What is Hybrid Cloud? Give examples.
 
 Difference between Public, Private, and Hybrid Cloud?
 
-###🔹 GCP Specific
+### 🔹 GCP Specific
 
 Why should we choose GCP over AWS or Azure?
 
@@ -36,7 +36,7 @@ What is Cloud Shell in GCP?
 
 What is a GCP Project?
 
-###🔹 Vocabulary & Advanced Basics
+### 🔹 Vocabulary & Advanced Basics
 
 What is Virtualization?
 
@@ -70,7 +70,7 @@ Difference between Load Balancing and Auto-scaling?
 
 What is meant by Shared Responsibility in cloud?
 
-✅ Answers
+### ✅ Answers
 
 Cloud: A virtual space to store and run apps/data online.
 
