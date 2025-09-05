@@ -15,7 +15,7 @@
 ---
 
 # ☁️ Basics of Cloud Computing
----
+
 ## 🔹 What is Cloud?
 
 The **cloud** is a vast, virtual space where you can **store files, run software, and access services** over the internet.  
