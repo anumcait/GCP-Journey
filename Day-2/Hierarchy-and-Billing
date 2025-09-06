@@ -1,0 +1,54 @@
+# 🚀 GCP Learning – Day 2
+
+On Day 2, I explored the **foundations of GCP resource organization, billing, and cost management**. These are critical for both day-to-day operations and cloud governance.
+
+---
+
+## 📌 Topics Covered
+
+### 1. GCP Resource Hierarchy
+- **Organization** → Root node, tied to domain (e.g., example.com).
+- **Folders** → Optional grouping for business units, teams, or environments.
+- **Projects** → Logical containers for APIs, billing, and resources.
+- **Resources** → Actual services like VMs, storage buckets, databases, etc.
+
+🔗 **Comparison with other clouds**
+- **AWS** → Organization → Accounts → OUs → Resources  
+- **Azure** → Management Groups → Subscriptions → Resource Groups → Resources  
+- **OCI** → Tenancy → Compartments → Resources  
+
+---
+
+### 2. Billing Setup
+- Create a **billing account** and link it to projects.
+- A project can have **only one billing account** at a time.
+- Centralized billing for multiple projects is possible.
+
+---
+
+### 3. Billing Alerts & Budgets
+- Define **budgets** with thresholds (e.g., 50%, 80%, 100%).  
+- Configure **alerts** via:
+  - Email notifications
+  - Pub/Sub for automation
+  - Cloud Monitoring dashboards
+- Helps prevent surprise bills.
+
+---
+
+### 4. Cost Optimization Strategies
+- Right-size compute/database resources.
+- Use **preemptible VMs** for short-lived, fault-tolerant jobs.
+- Apply **committed use discounts (CUDs)** and **sustained use discounts (SUDs)**.
+- Automate shutdown for idle dev/test environments.
+- Regularly review billing reports to remove unused resources.
+
+---
+
+### 5. Enable Essential APIs
+- Many GCP services require APIs to be enabled before use:
+  ```bash
+  gcloud services enable compute.googleapis.com \
+    storage.googleapis.com \
+    cloudbilling.googleapis.com \
+    billingbudgets.googleapis.com
