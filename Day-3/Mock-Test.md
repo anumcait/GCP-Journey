@@ -47,8 +47,8 @@ D) Creating GCP billing accounts
 
 **✅ Correct: B**
 
-**Q5. Which principle is the most important best practice in IAM?
-**
+**Q5. Which principle is the most important best practice in IAM?**
+
 A) Least Privilege
 
 B) Most Privilege
