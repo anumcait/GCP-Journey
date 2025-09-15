@@ -72,10 +72,12 @@ This will change the project name to the selected project
 
 <img width="786" height="401" alt="image" src="https://github.com/user-attachments/assets/581e6a01-c86e-4fd2-86f3-1f3fde429a49" />
 
-Now create and assign role : gcloud projects add-iam-policy-binding $PROJECT_ID \
+Now create and assign role : 
+```
+gcloud projects add-iam-policy-binding $PROJECT_ID \
 --member="user:<username>" \
 --role="roles/viewer"
-
+```
 <img width="786" height="401" alt="image" src="https://github.com/user-attachments/assets/82f86ee8-892c-49e0-b1bb-6f01af9c3446" />
 
 Now the user with role we can see
