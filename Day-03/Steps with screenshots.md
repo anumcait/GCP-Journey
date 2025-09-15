@@ -2,9 +2,7 @@
 
 ### Through Console
 
-**Step - 1**
-
-Create a project & Create IAM Role & Assign role to the User
+****Create a project & Create IAM Role & Assign role to the User****
 
 <img width="786" height="401" alt="image" src="https://github.com/user-attachments/assets/d4411f96-3a09-48cb-ac1c-ba0aad606518" />
 
