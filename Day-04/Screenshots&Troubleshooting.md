@@ -80,7 +80,7 @@ Click on it → Permissions tab → Grant Access
 
 Add:
 
-- New Principal: <<email-address>>
+- New Principal: <email-address that permission to be granted>
 
 - Role: Service Account User
 
