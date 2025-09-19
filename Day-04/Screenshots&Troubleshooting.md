@@ -80,7 +80,7 @@ Click on it → Permissions tab → Grant Access
 
 Add:
 
-- New Principal: <email-address that permission to be granted>
+- New Principal: ##email-address that permission to be granted##
 
 - Role: Service Account User
 
@@ -102,7 +102,7 @@ login with cloud shell
 
 Here i got error as i have given wrong vm name. Here i confused a bit for project name and vm name
 
-I have given project name instead of VM name
+**`I have given project name instead of VM name`**
 
 Again changed name and run again, this time it worked for me 
 
