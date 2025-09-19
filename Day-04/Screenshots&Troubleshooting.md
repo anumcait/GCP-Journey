@@ -80,7 +80,7 @@ Click on it → Permissions tab → Grant Access
 
 Add:
 
-- New Principal: anumcait@gmail.com
+- New Principal: <<email-address>>
 
 - Role: Service Account User
 
