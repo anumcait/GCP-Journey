@@ -15,13 +15,19 @@ This exercise demonstrated my understanding of autoscaling, high availability, l
 ## Here I have covered all the steps with screenshots
 
 ## 🏗️ Overview
-This project demonstrates how to configure a **highly available and scalable web application** using:
+
+This project demonstrates **highly available and auto-scaled web application architecture** using Google Cloud Platform (GCP).
+
+It includes the configuration of:
+
 - **Instance Template**
-- **Managed Instance Group (MIG)**
-- **Application Load Balancer**
-- **Auto Scaling**
-- **Firewall Rules**
-- **Health Checks**
+- - **Application Load Balancer**
+- **HTTP(S) (Application) Load Balancer**
+- **Autoscaling (Min: 3, Max: 10)**
+- **Multi-Zone High Availability**
+- **Firewall Rules & Health Checks**
+
+When the setup was completed correctly, refreshing the load balancer’s public IP showed responses from **different instance IDs**, proving **load distribution and instance rotation**.
 
 ---
 
@@ -33,11 +39,55 @@ This project demonstrates how to configure a **highly available and scalable web
 3. **Application Load Balancer** – Distributes traffic across instances and performs health checks.
 4. **Firewall Rule** – Allows HTTP (port 80) access to instances.
 
+### 🧩 Architecture Diagram
+```
+          ┌──────────────────────────────────────────┐
+          │          GCP HTTP Load Balancer          │
+          │  (Frontend IP: Global, HTTPS/HTTP Rule)  │
+          └──────────────────────────────────────────┘
+                              │
+                              ▼
+               ┌────────────────────────────────┐
+               │  Backend Service (Health Check) │
+               └────────────────────────────────┘
+                              │
+                              ▼
+          ┌───────────────────────────────┐
+          │ Managed Instance Group (MIG)  │
+          │ - Multi-Zone (HA)             │
+          │ - Autoscaling (3–10)          │
+          │ - Instance Template           │
+          └───────────────────────────────┘
+                     │       │       │
+                     ▼       ▼       ▼
+           [VM1]     [VM2]     [VM3]   ... up to 10
+            │
+        Apache/NGINX on port 80
+  ```      
 ---
 
-## 🚀 Steps to Create
+## ⚙️ Step-by-Step Implementation
 
-### 1️⃣ Create an Instance Template
+### 1️⃣ Create a Project
+
+Go to GCP Console → Create a new project (e.g., gcp-loadbalancer-demo).
+
+### 2️⃣ Create an Instance Template
+
+- Navigate to Compute Engine → Instance templates → Create template
+- Configure:
+   - Machine Type: e2-micro (for demo)
+   - Boot Disk: Debian/Ubuntu
+   - Startup Script:
+```
+#!/bin/bash
+apt update
+apt install -y apache2
+echo "Hello from $(hostname)" > /var/www/html/index.html
+systemctl restart apache2
+
+```
+   - Expose port 80
 <img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/9063f97d-03a1-401f-bbe1-66de86b62581" />
 <img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/e74bbd6c-e523-415b-ab82-0d2409adc5f9" />
 
@@ -60,8 +110,14 @@ gcloud compute instance-templates create web-template \
 ```
 
 
-### 2️⃣ Create a Managed Instance Group
+### 3️⃣ Create a Managed Instance Group (MIG)
 
+- Choose Regional (Multi-Zone) for high availability
+- Select the instance template created above
+- Configure:
+   - Autoscaling: Min 3, Max 10
+   - Health Check: TCP/HTTP on port 80
+- Deploy the group
 <img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/9096fa30-8888-463b-a788-c20b3fa2bca4" />
 <img width="1050" height="521" alt="image" src="https://github.com/user-attachments/assets/ed58db1d-2019-44cf-a141-b0843b278e0d" />
 
@@ -73,15 +129,15 @@ gcloud compute instance-groups managed create web-mig \
   --size=3 \
   --zones=us-central1-a,us-central1-b
 ```
-
-### Enable autoscaling:
+**Enable autoscaling:**
 ```
 gcloud compute instance-groups managed set-autoscaling web-mig \
   --min-num-replicas=3 \
   --max-num-replicas=10 \
   --target-cpu-utilization=0.6
 ```
-### 3️⃣ Create Firewall Rule
+
+### 4️⃣ Create Firewall Rule
 
 <img width="1050" height="528" alt="image" src="https://github.com/user-attachments/assets/efc5be77-26ac-489d-823a-f0b69c696ade" />
 
@@ -93,7 +149,17 @@ gcloud compute firewall-rules create allow-http \
   --target-tags=http-server \
   --description="Allow incoming HTTP traffic"
 ```
-### 4️⃣ Configure Load Balancer
+### 5. Create the Load Balancer
+
+- Go to Network Services → Load balancing
+- Choose HTTP(S) Load Balancer → From Internet to my VMs
+- Backend Service:
+   - Connect to your MIG
+   - Add health check (HTTP, port 80)
+- Frontend Configuration:
+   - Assign a new public IP
+
+Protocol: HTTP (or HTTPS if certs configured)
 
 - Create Backend Service linked to the MIG
 - Add Health Check (HTTP on port 80)
@@ -108,12 +174,19 @@ gcloud compute firewall-rules create allow-http \
 
 ### 🧩 Verification
 
-After setup:
-<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/87c489d9-a505-455a-9471-6ac96f099fad" />
-
+- Initially, browser access failed (firewall missing)
+- After firewall rule → Load balancer IP showed response:
 - Access the Load Balancer IP in a browser
 - Each refresh should show a different instance ID, indicating load balancing across instances.
 - If not accessible, check firewall rules or backend health.
+```
+Hello from gcp-instance-1
+Hello from gcp-instance-3
+Hello from gcp-instance-5
+```
+on refresh (round-robin load distribution).
+
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/87c489d9-a505-455a-9471-6ac96f099fad" />
 
 ### 🧠 Key Learnings
 
@@ -123,7 +196,7 @@ After setup:
 - Firewall Rules are critical for external access.
 - Health Checks maintain service reliability.
 
-📷 Output
+### 📷 Output
 
 <img width="700" height="200" alt="image" src="https://github.com/user-attachments/assets/b42f40db-4007-4c6d-a16c-aeeb58e08bac" />
 <img width="700" height="200" alt="image" src="https://github.com/user-attachments/assets/369f468f-ef8b-4cd2-b85c-d1f3365ddaee" />
