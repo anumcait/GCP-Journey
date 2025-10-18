@@ -73,8 +73,7 @@ The setup ensures **secure**, **scalable**, **fault-tolerant**, and **user-frien
 
 <img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/5a02b63f-562a-4a1c-89a3-5565ba46f5e4" />
 <img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/5c9f4d09-e6d9-43d5-ab7e-19cd6dfb0953" />
-
-
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/9070152a-8e4e-4525-8a71-89bb837c798a" />
 
 ---
 
@@ -90,6 +89,9 @@ We want private VMs (no external IPs) to reach the internet for apt/pip.
    - NAT IP addresses: Auto-allocate (okay for demo)
    - Subnetworks: Select subnet-app (and subnet-public if you like)
    - Create.
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/9607f946-85e3-406b-9b14-14e7effea7de" />
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/bb319fe6-7c1e-4d82-b377-4f13e9b119d5" />
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/ed873979-0adb-40df-9a6b-ae7a95717e84" />
 
 ---
 
@@ -101,6 +103,7 @@ A) Allow **Google health-check** ranges to reach your backends:
    - VPC network → Firewall → Create firewall rule
    - Name: allow-health-checks-8080
    - Direction: Ingress
+   -**Network:prod-vpc** (Make sure selected this otherwise will get error , i did not get page after troubleshooting found this and changed network)
    - Targets: All instances in the network (or use a network tag from your template)
    - Source IPv4 ranges: 35.191.0.0/16, 130.211.0.0/22
    - Protocols/ports: TCP:8080
@@ -110,10 +113,19 @@ B) Allow **LB data-plane** traffic from the proxy-only subnet to your backends:
    - VPC network → Firewall → Create firewall rule
    - Name: allow-proxy-only-8080
    - Direction: Ingress
+   - **Network:prod-vpc**
    - Targets: All instances in the network (or tag)
    - Source IPv4 ranges: 10.10.30.0/24   (your proxy-only subnet CIDR)
    - Protocols/ports: TCP:8080
    - Create.
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/29dbd7ea-608a-420a-84d4-4c05e2601c3f" />
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/e91a2ac5-004c-448a-bc6a-349ec5f2e76f" />
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/65fea79a-53e4-4295-82e0-6d979594040c" />
+
+(**This is where i selected default and after troubleshooting changed**)
+
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/6159d7c6-ec02-4314-b971-7e9b9c490076" />
+
 
 ---
 
@@ -194,6 +206,10 @@ Create the template:
    - Firewall section: leave unchecked (we use explicit rules created earlier)
    - Automation: paste the startup script
    - Create.
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/8b896ba0-455d-4d5f-a969-6ad4e9bc06fb" />
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/9a0fc1b7-5796-4634-8c76-361561550082" />
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/b5f6c873-7b54-4258-89fc-4a47079abe93" />
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/8eba712a-6a07-41e8-aa2e-5d77e31cb70f" />
 
 ---
 
@@ -206,8 +222,10 @@ Create the template:
    - Autoscaling: Min 2, Max 4 (demo)
    - Create.
 
+
 > Verification (optional, via a bastion in subnet-public): you can SSH to a bastion with an external IP, then SSH to private instances using internal IP, and curl http://<vm-internal-ip>:8080/health
 
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/a5124601-dcde-47d5-87f6-18b1527764a5" />
 ---
 
 ## Step 6 — Create the Regional External HTTP(S) Load Balancer
@@ -243,9 +261,22 @@ Create the template:
    - After provisioning, open the frontend IP in a browser:
      - You should see: Hello from Flask on GCP (private subnet)!
 
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/12d94a5c-bc4a-45c8-8501-80f92a95ea41" />
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/f2305134-acee-4d8f-9345-7559f8b8d1e2" />
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/57255774-038b-4a0a-ba73-f54eb06c3505" />
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/96aa9c1e-3d2a-4303-8007-425d7ceeb681" />
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/280fe438-fbd7-4d19-8b44-5aa74ffecff5" />
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/003ade4c-6e30-4b48-b53b-f58e4e8eb8e9" />
+
+
+
+
+
+
+
 ---
 
-## Step 7 — Domain setup (GoDaddy high-level) + Cloud DNS records
+## Step 7 — Domain setup (GoDaddy high-level) + Cloud DNS records (optional)
 
 High-level in GoDaddy:
 - Buy or use an existing domain (e.g., example.in)
@@ -295,5 +326,11 @@ Optional terminal checks (any machine with dig/curl):
 - dig A example.in +short
 - dig NS example.in +short
 - curl -i http://example.in/
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/2a72ab2c-d661-45b8-9daf-fdd8d81da465" />
+<img width="700" height="300" alt="image" src="https://github.com/user-attachments/assets/2ca440d6-bce2-48a5-b912-445cc902daa8" />
+<img width="700" height="300" alt="image" src="https://github.com/user-attachments/assets/289be31c-48d2-4ed1-8c32-92b75b91471b" />
+
+
+
 
 ---
