@@ -1,4 +1,4 @@
-# Day-8: 🚀 GCP Flask App Deployment — VPC + NAT + Load Balancer + Cloud DNS
+# 🚀 Day-8: GCP Flask App Deployment — VPC + NAT + Load Balancer + Cloud DNS
 
 ## 📘 Overview
 
