@@ -1,4 +1,4 @@
-# Day-9: Google Cloud CLI (gcloud) Deep Dive
+# Day-9: Google Cloud CLI (gcloud)
 
 In earlier days, we built everything from the Google Cloud Console (UI). From Day-9 onward, we'll use the Google Cloud CLI (`gcloud`) to automate, script, and work like real DevOps/Cloud engineers.
 
