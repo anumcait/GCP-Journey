@@ -160,6 +160,8 @@ gcloud storage rm gs://${BUCKET}/hello.txt
 gcloud storage buckets delete gs://${BUCKET}
 ```
 
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/24fffa5c-8d5d-4b1b-ad77-c65860816f11" />
+
 
 
 
