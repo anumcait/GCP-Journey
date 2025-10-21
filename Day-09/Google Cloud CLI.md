@@ -52,11 +52,13 @@ Set your project, region, and zone to align with the resources you will be worki
 PROJECT_ID="<YOUR_PROJECT_ID>"
 REGION="us-central1"
 ZONE="us-central1-a"
-
 gcloud config set project ${PROJECT_ID}
 gcloud config set compute/region ${REGION}
 gcloud config set compute/zone ${ZONE}
 ```
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/440d1c11-6eee-42f5-a9db-f53ad044f34f" />
+
+
 ## Creating and Managing a Compute VM
 ### Step 1: Create a Debian VM
 
@@ -74,6 +76,15 @@ gcloud compute instances create day9-vm \
 - image-family=debian-12: Specifies the Debian 12 image.
 - image-project=debian-cloud: Indicates the source project for the Debian image.
 
+**Troubleshooting :** You will get error like this when billing account not enabled for the project
+
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/615b932b-52a3-4e5d-b4a2-a8a3f3735c80" />
+
+Enabled Billing account again retry
+
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/1bc8fc4c-4129-4f65-9dc7-46fd10874037" />
+
+
 ### Step 2: Get External IP Address
 
 After the VM is created, get the external IP address using:
@@ -89,16 +100,23 @@ Once the VM is up, SSH into it using:
 ```bash
 gcloud compute ssh day9-vm --zone=${ZONE}
 ```
+ZONE: asia-southeast1-b, if you get error check zone, i got error while zone mismatched found
 
 This will open an SSH connection to your VM. If you're using Cloud Shell, it will automatically attach to the VM.
 
-Clean Up: Delete the VM
+**Clean Up: Delete the VM**
 
 Once you're done with your VM, clean up to avoid incurring unnecessary costs. To delete the VM:
+
 ```bash
 gcloud compute instances delete day9-vm --zone=${ZONE}
 ```
-Creating and Managing a Google Cloud Storage (GCS) Bucket
+Note: If you are into ssh, then exit from ssh of that VM
+
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/747450e3-a070-4e10-acdb-875a3a452623" />
+
+
+## Creating and Managing a Google Cloud Storage (GCS) Bucket
 
 ### Step 1: Create a GCS Bucket
 
