@@ -7,19 +7,19 @@ As a DevOps Engineer, understanding databases is critical — from **deployment 
 
 ---
 
-## 🧠 Understanding Databases
+## 🧠 1. Understanding Databases
 
 ### 🔹 Types of Databases
 | Type | Example | Description |
 |------|----------|--------------|
-| Relational | PostgreSQL, MySQL | Structured, table-based with SQL |
-| Non-relational | MongoDB, Firestore | Flexible schema, document or key-value store |
-| In-memory | Redis, Memcached | Data stored in RAM for ultra-fast access |
-| Time-series | InfluxDB, Prometheus | Optimized for time-stamped data |
+| Relational | PostgreSQL, MySQL, Oracle | Structured, table-based with SQL |
+| Non-relational | MongoDB, Cassandra, Firestore | Flexible schema, document or key-value store |
+| In-memory | Redis, Memcached, ValKey | Data stored in RAM for ultra-fast access |
+| Time-series | InfluxDB, Timescale DB, Prometheus | Optimized for time-stamped data |
 
 ---
 
-## 🏗️ Deployment Options
+## 🏗️ 2. Deployment Options
 | Mode | Description | Example |
 |------|--------------|----------|
 | On-Premise | Installed locally in servers | PostgreSQL on Linux VM |
@@ -38,7 +38,7 @@ As a DevOps Engineer, understanding databases is critical — from **deployment 
 
 ---
 
-## 🛠️ 4. What is Cloud SQL (PostgreSQL)
+## 🛠️ 4. What is Cloud SQL in Google Cloud Platform (GCP)
 
 **Cloud SQL** is a **fully managed relational database service** that supports **PostgreSQL**, **MySQL**, and **SQL Server** on Google Cloud.
 
@@ -51,7 +51,7 @@ Features:
 
 ---
 
-## 🪜 5. Step-by-Step: Create PostgreSQL Instance in Cloud SQL
+## 🔹 5. Step-by-Step: Create PostgreSQL Instance in Cloud SQL
 
 ### A. Preparation
 1. Enable the **Cloud SQL Admin API** in your project.  
@@ -104,6 +104,36 @@ psql "host=127.0.0.1 port=5432 user=postgres dbname=postgres password=YourPasswo
 ```bash
 host=10.12.0.3 dbname=employee_db user=app_user password=xxxx sslmode=require
 ```
+---
+
+### ♻️ 6. Backup & Restore
+
+- Enable Automated Backups
+- Run On-Demand Backup before schema changes
+- Use Point-in-Time Recovery for rollback
+
+**Example: Export backup to Cloud Storage**
+```bash
+gcloud sql export sql pg-instance-dev gs://my-bucket/backups/employee_db.sql.gz \
+  --database=employee_db
+```
+
+**Import backup:**
+```bash
+gcloud sql import sql pg-instance-dev gs://my-bucket/backups/employee_db.sql.gz \
+  --database=employee_db
+```
+---
+
+### ⚙️ 7. Create Read Replica
+
+To scale reads:
+```bash
+gcloud sql instances create pg-replica-1 \
+  --master-instance-name=pg-instance-dev \
+  --region=asia-south1
+```
+---
 
 ### 💻 8. Common gcloud Commands
 ```bash
