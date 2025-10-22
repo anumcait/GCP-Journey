@@ -4,6 +4,7 @@
 Today I explored how databases fit into the **DevOps world** and how Google Cloud Platform (GCP) simplifies database operations using **Cloud SQL**.
 
 As a DevOps Engineer, understanding databases is critical — from **deployment automation**, **backup management**, **scaling**, to **monitoring**.
+---
 
 <img width="800" height="500" alt="image" src="https://github.com/user-attachments/assets/dc036174-170d-414b-93e3-bb164ab6d412" /> 
 
@@ -61,6 +62,12 @@ Features:
 3. Choose **PostgreSQL version** (recommended: latest supported).  
 4. Decide **vCPU**, **memory**, and **storage** requirements.
 
+<img width="300" height="465" alt="image" src="https://github.com/user-attachments/assets/c853dd0a-2004-40f3-979c-8df0054044ad" />
+
+<img width="300" height="526" alt="image" src="https://github.com/user-attachments/assets/1ad2051c-0728-464d-9b74-8ad1f2de0260" />
+
+<img width="300" height="520" alt="image" src="https://github.com/user-attachments/assets/33b36cdc-27d8-48b6-b6bd-cfa6da345222" />
+
 ---
 
 ### B. Create PostgreSQL Instance (via Console)
@@ -76,6 +83,34 @@ Features:
    - **Private IP** connectivity (recommended)  
 5. Click **Create Instance**
 
+<img width="300" height="524" alt="image" src="https://github.com/user-attachments/assets/cc3026b7-3640-41e6-88fa-08a443994923" />
+
+<img width="300" height="516" alt="image" src="https://github.com/user-attachments/assets/02aee2eb-205e-473d-aeca-de270ed39a7d" />
+
+<img width="300" height="535" alt="image" src="https://github.com/user-attachments/assets/91af266f-26dd-4482-be43-5467195a831c" />
+
+<img width="300" height="533" alt="image" src="https://github.com/user-attachments/assets/62c91bbf-a1c1-42eb-8e53-cb0a4d1d1d9f" />
+
+<img width="300" height="524" alt="image" src="https://github.com/user-attachments/assets/e8a2ff72-0748-4dcd-bfa4-29ef4a1fbd56" />
+
+<img width="300" height="533" alt="image" src="https://github.com/user-attachments/assets/8868ead7-d150-4683-9ccf-c65e0cad3f17" />
+
+<img width="300" height="528" alt="image" src="https://github.com/user-attachments/assets/2c1eab27-e815-4c7e-b684-25c13dfc2b62" />
+
+<img width="300" height="526" alt="image" src="https://github.com/user-attachments/assets/bba516a7-bd2c-4c8b-9a45-b17c5caae9ca" />
+
+<img width="300" height="542" alt="image" src="https://github.com/user-attachments/assets/e489bfa0-9028-4523-b805-2ca516024b2c" />
+
+
+
+
+
+
+
+
+
+
+
 ---
 
 ### C. Create Database & Users
@@ -85,6 +120,24 @@ After the instance is ready:
 - Go to **Users → Create user account** → `app_user` with secure password  
 
 > Avoid using the default `postgres` user for applications.
+
+<img width="300" height="523" alt="image" src="https://github.com/user-attachments/assets/6f665a59-ef3f-4072-b53d-cdf2769eb488" />
+
+<img width="300" height="527" alt="image" src="https://github.com/user-attachments/assets/25461ad6-cd51-4cc8-b90b-a8c9bae61e29" />
+
+<img width="300" height="534" alt="image" src="https://github.com/user-attachments/assets/0f533756-84ed-49c8-86bd-1c1879628256" />
+
+<img width="300" height="524" alt="image" src="https://github.com/user-attachments/assets/d19dba38-4c8a-4385-9341-2e264531527e" />
+
+<img width="300" height="538" alt="image" src="https://github.com/user-attachments/assets/7f3520e4-c292-44a6-9d7e-1f96272db503" />
+
+<img width="300" height="527" alt="image" src="https://github.com/user-attachments/assets/b41b6726-1ae9-452a-900c-fe384f8a598d" />
+
+<img width="300" height="530" alt="image" src="https://github.com/user-attachments/assets/6de5c6a5-10ca-490a-84b0-6f7d45c73b3f" />
+
+<img width="300" height="530" alt="image" src="https://github.com/user-attachments/assets/99bcaa9a-9bd5-46e1-a00a-0977d90996eb" />
+
+<img width="300" height="466" alt="image" src="https://github.com/user-attachments/assets/6f41016b-533e-479d-8629-a625969f55a7" />
 
 ---
 
@@ -141,7 +194,7 @@ gcloud sql instances create pg-replica-1 \
 ```bash
 # Create PostgreSQL instance
 gcloud sql instances create pg-instance-dev \
-  --database-version=POSTGRES_15 \
+  --database-version=POSTGRES_17 \
   --tier=db-custom-1-3840 \
   --region=asia-south1
 
