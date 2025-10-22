@@ -5,6 +5,8 @@ Today I explored how databases fit into the **DevOps world** and how Google Clou
 
 As a DevOps Engineer, understanding databases is critical — from **deployment automation**, **backup management**, **scaling**, to **monitoring**.
 
+<img width="800" height="500" alt="image" src="https://github.com/user-attachments/assets/dc036174-170d-414b-93e3-bb164ab6d412" /> 
+
 ---
 
 ## 🧠 1. Understanding Databases
