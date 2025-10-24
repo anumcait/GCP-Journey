@@ -79,7 +79,7 @@ Docker networks allow containers to communicate securely with each other.
 Types:`bridges`,`host`,`overlay`,`none`
 
 ---
-🧰 Hands-On / Scenario Questions
+## 🧰 Hands-On / Scenario Questions
 
 ### 1️⃣ Your app runs locally but fails in Docker. What would you check?
 - Logs: `docker logs container_name`
@@ -129,29 +129,120 @@ docker build --progress=plain --no-cache .
 sudo apt update
 sudo apt install docker.io -y
 ```
-How do you run docker without sudo?
+### 2️⃣ How do you run docker without sudo?
 ```bash
 sudo usermod -aG docker $USER
 newgrp docker
 ```
-How do you open a port for Docker app on GCP?
+### 3️⃣ How do you open a port for Docker app on GCP?
 ```bash
 gcloud compute firewall-rules create allow-tcp-8080 \
   --allow tcp:8080 \
   --target-tags=docker-app \
   --description="Allow external access to port 8080"
 ```
-How do you push Docker image to artifact Registry?
+### 4️⃣ How do you push Docker image to artifact Registry?
 ```bash
 gcloud auth configure-docker REGION-docker.pkg.dev
 docker tag app:latest REGION-docker.pkg.dev/PROJECT/REPO/app:v1
 docker push REGION-docker.pkg.dev/PROJECT/REPO/app:v1
 ```
-What is the difference between Docker Hub and Artifact Registry?
+### 5️⃣ What is the difference between Docker Hub and Artifact Registry?
 |DockerHub|Artifact Registry|
 |---------|-----------------|
 |Public/Private registry for all users| Private, Google-managed Registry|
 |Hosted globally|Region-based within GCP|
 |Free/Paid tiers|Integrated with IAM roles|
 
+---
 
+## 💬 Behavioral & DevOps Mindset Questions
+
+### 1️⃣ How does docker fit in Devops lifecycle?
+Docker ensures environment consistency between development, testing and production - crucial for CI/CD pipelines
+
+---
+
+### 2️⃣ As a DevOps engineer, how much you should understand?
+You should know:
+- App entry point (npm start, gunicorn app:app, etc.)
+- Required environment variables
+- Dependencies and build steps
+- Ports, logs, and health checks
+
+**Example:**
+
+If a container keeps restarting, you should check the app’s startup command, environment variable configuration, and exposed ports — not rewrite the code.
+
+---
+
+### 3️⃣ How does Docker improve CI/CD pipelines?
+
+- Enables consistent builds in Jenkins/GitHub Actions
+- Speeds up deployment (immutable images)
+- Simplifies rollback (versioned images)
+
+---
+
+### 4️⃣ Difference between Docker and Kubernetes?
+|Docker|Kubernetes|
+|------|----------|
+|Containerization tool|Container orchestration platform|
+|Build & runs containers| Manages, scales, heals containers|
+|Single host|Multi-node cluster|
+
+---
+
+## 🧾 Mock Test — Round 1 (Basic)
+
+### Q1. What command is used to list all Docker containers?
+
+✅ docker ps -a
+
+### Q2. Which file defines how a Docker image is built?
+
+✅ Dockerfile
+
+### Q3. Which command removes all stopped containers?
+
+✅ docker container prune
+
+### Q4. What port is exposed in this command?
+
+docker run -p 8080:80 nginx
+
+✅ Host 8080 → Container 80
+
+### Q5. What does docker-compose do?
+
+✅ Orchestrates multiple containers as services.
+
+---
+
+## ⚡ Mock Test — Round 2 (Advanced Scenarios)
+
+### Scenario 1:
+
+A Node.js app runs fine locally but fails after Dockerization — “PORT already in use.”
+
+✅ Fix: Change container’s exposed port or host mapping.
+
+### Scenario 2:
+Your GCP VM runs a Docker container on port 8080 but is unreachable externally.
+
+✅ Fix: Add firewall rule or assign correct network tag.
+
+### Scenario 3:
+Container logs show Error: Cannot find module 'express'.
+
+✅ Fix: Install dependencies properly before building image.
+
+### Scenario 4:
+App works locally, but in container, static files are missing.
+
+✅ Fix: Add proper build step (npm run build) before copying files.
+
+### Scenario 5:
+Docker image is 1GB in size. How can you reduce it?
+
+✅ Use Alpine base image + multi-stage builds.
