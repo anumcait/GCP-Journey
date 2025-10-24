@@ -64,7 +64,7 @@ COPY --from=build /app/dist /usr/share/nginx/html
 |---|----------|
 |Default command for the container|Defines the main executable|
 |Can be overridden easily|Harder to Override|
-|Example:`CMD["npm", "start"]`|Example:`ENTRYPOINT ["python"]`|
+|Example:`CMD ["npm", "start"]`|Example:`ENTRYPOINT ["python"]`|
 
 ### 9️⃣ How can you persist data inside a Docker container?
 Use **Docker volumes** or **bind mounts**
@@ -122,5 +122,36 @@ or build with
 ```bash
 docker build --progress=plain --no-cache .
 ```
+---
+## ☁️ GCP-Specific Docker Questions
+### 1️⃣ How do you install Docker on GCP Compute Engine?
+```bash
+sudo apt update
+sudo apt install docker.io -y
+```
+How do you run docker without sudo?
+```bash
+sudo usermod -aG docker $USER
+newgrp docker
+```
+How do you open a port for Docker app on GCP?
+```bash
+gcloud compute firewall-rules create allow-tcp-8080 \
+  --allow tcp:8080 \
+  --target-tags=docker-app \
+  --description="Allow external access to port 8080"
+```
+How do you push Docker image to artifact Registry?
+```bash
+gcloud auth configure-docker REGION-docker.pkg.dev
+docker tag app:latest REGION-docker.pkg.dev/PROJECT/REPO/app:v1
+docker push REGION-docker.pkg.dev/PROJECT/REPO/app:v1
+```
+What is the difference between Docker Hub and Artifact Registry?
+|DockerHub|Artifact Registry|
+|---------|-----------------|
+|Public/Private registry for all users| Private, Google-managed Registry|
+|Hosted globally|Region-based within GCP|
+|Free/Paid tiers|Integrated with IAM roles|
 
 
