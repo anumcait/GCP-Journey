@@ -51,3 +51,5 @@ COPY . .
 RUN npm install
 CMD ["npm", "start"]
 ```
+### 7️⃣ What is a Multi stage Dockerfile?
+A **multi-stage** build allows 
