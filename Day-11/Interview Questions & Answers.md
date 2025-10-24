@@ -52,4 +52,75 @@ RUN npm install
 CMD ["npm", "start"]
 ```
 ### 7️⃣ What is a Multi stage Dockerfile?
-A **multi-stage** build allows 
+A **multi-stage** build allows building and packaging an app in separate stages to reduce image size and improve security.
+```bash
+FROM node:18 AS build
+RUN npm run build
+FROM nginx:alpine
+COPY --from=build /app/dist /usr/share/nginx/html
+```
+### 8️⃣ What is the difference between `CMD` and `ENTRYPOINT`?
+|CMD|ENTRYPOINT|
+|---|----------|
+|Default command for the container|Defines the main executable|
+|Can be overridden easily|Harder to Override|
+|Example:`CMD["npm", "start"]`|Example:`ENTRYPOINT ["python"]`|
+
+### 9️⃣ How can you persist data inside a Docker container?
+Use **Docker volumes** or **bind mounts**
+
+Example
+
+```bash
+docker run -v /host/data:/container/data myapp
+```
+### 🔟 What are Docker networks?
+Docker networks allow containers to communicate securely with each other.
+Types:`bridges`,`host`,`overlay`,`none`
+
+---
+🧰 Hands-On / Scenario Questions
+
+### 1️⃣ Your app runs locally but fails in Docker. What would you check?
+- Logs: `docker logs container_name`
+- ports and env variables
+- Missing dependencies or incorrect `WORKDIR`
+- Incorrect `EXPOSE` or network mode
+
+### 2️⃣ You deployed a container on port 8080 but can't access it externally on GCP. Why?
+**possible causes:**
+- GCP firewall not open for port 8080
+- Container not mapped (-p 8080:8080)
+- App listening on `localhost` instead of 0.0.0.0
+
+### 3️⃣ Your container stops immediately after running. Why?
+Because the main process (PID 1) has exited.
+Solution: Make sure CMD runs a foreground process(e.g., node index.js, not background script).
+
+### 4️⃣ How do you see container resource usage?
+```bash
+docker stats
+```
+### 5️⃣ How do you reduce Docker image size?
+- Use **multi-stage** builds
+- Use **Alpine** base image
+- Add **.dockerignore**
+- Clean cache and temp files
+
+### 6️⃣ How do you access a shell inside a running container?
+```bash
+docker exec -it bash container /bin/sh
+```
+
+### 7️⃣ How do you debug a failed Docker build?
+```bash
+docker build -t myapp .
+# then check
+docker history myapp
+```
+or build with
+```bash
+docker build --progress=plain --no-cache .
+```
+
+
