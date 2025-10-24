@@ -107,7 +107,7 @@ If you see the Docker success message — ✅ Docker is ready.
 
 For this demo, we’ll use a Super Mario JavaScript (TypeScript) application.
 ```bash
-git clone https://github.com/username/super-mario-mimic.git
+git clone https://github.com/iam-veeramalla/super-mario-mimic
 cd super-mario-mimic
 ```
 
