@@ -64,6 +64,10 @@ So, as a DevOps engineer, your focus is not to write code — but to understand 
 2. Create a new project (e.g., `docker-demo`).
 3. Enable **Compute Engine API**.
 
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/9c5d2c21-d071-4a71-933d-53721d9a1630" />
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/4727d012-06e3-4009-9d58-8d6e8ff1ffed" />
+
 ---
 
 ### Step 2 — Create a Virtual Machine
@@ -74,6 +78,7 @@ So, as a DevOps engineer, your focus is not to write code — but to understand 
    - **Provisioning Model:** Spot (optional, for cost savings)
    - **Network Tag:** `mario` (used for firewall rules)
 
+<img width="500" height="539" alt="image" src="https://github.com/user-attachments/assets/3166c133-0a5e-422b-be18-558597fc37cd" />
 ---
 
 ### Step 3 — Connect to the VM
@@ -101,6 +106,10 @@ Verify installation:
 ```bash
 docker run hello-world
 ```
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/cdc5c0ab-144b-4709-857d-c82ca268030c" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/f4a3415a-e1ef-4193-a2b5-2fbc044bd2c3" />
+
 If you see the Docker success message — ✅ Docker is ready.
 
 ## 🕹️ Step 4 — Clone and Prepare Application
@@ -166,6 +175,11 @@ Check running containers:
 ```bash
 docker ps
 ```
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/d98f0854-904e-45da-b06c-51ba5bbb644c" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/0f3385aa-662b-4b4f-ae51-15009984ef22" />
+
+
 ## 🌍 Step 7 — Configure Firewall (Expose the App)
 
 By default, GCP blocks all ports.
@@ -182,6 +196,8 @@ Now, go to your VM’s **External IP** and open in browser:
 ```bash
 http://<EXTERNAL_IP>:8080
 ```
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/54c48708-03ec-40ea-8389-32b67236a0db" />
+
 
 🎮 You should now see the Super Mario app live on the internet!
 
@@ -193,6 +209,14 @@ docker login
 docker tag mario-game:v1 yourusername/mario-game:v1
 docker push yourusername/mario-game:v1
 ```
+**You can check through web console on the cloud shell**
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/0bb43878-2e25-4fc2-b2cf-61c7f4f0ec54" />
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/0e45eebc-1b22-472e-b595-7af1495cc0ea" />
+
+
+
 ## 🧩 Summary
 
 ✅ Installed Docker on GCP Compute Engine
