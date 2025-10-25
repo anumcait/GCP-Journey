@@ -66,7 +66,6 @@ Let’s implement everything step-by-step.
 ---
 
 ### 🧩 Step 1: Set up Cloud Shell and Project (One time setup)
-
 ```bash
 # Set current project
 gcloud config set project PROJECT_ID
@@ -83,6 +82,11 @@ Verify:
 ```bash
 echo $PROJECT_ID $REGION $ZONE $REPO_NAME
 ```
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/29d819e7-af91-4789-98f1-01eac5fd5534" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/30f4d127-4998-4e89-9912-745406727925" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/336de340-55f1-496b-a544-d4fb89a0df40" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/07eb32f0-b1f1-471b-92fd-a94eb566b34b" />
+
 ---
 
 ## ⚙️ Step 2: Enable Required APIs
@@ -122,6 +126,10 @@ gcloud artifacts repositories add-iam-policy-binding $REPO_NAME \
   --member="serviceAccount:ar-demo@$PROJECT_ID.iam.gserviceaccount.com" \
   --role="roles/artifactregistry.writer"
 ```
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/7e308743-9561-40e1-b86c-70d949671146" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/d39b4ccb-6435-4394-8335-60bddefa6138" />
+
 ---
 
 ## 🖥️ Step 5: Create Virtual Machine and Attach Service Account
@@ -135,6 +143,10 @@ gcloud compute instances create ar-pay-demo \
 ### Verify instance:
 gcloud compute instances list
 ```
+
+<img width="1049" height="521" alt="image" src="https://github.com/user-attachments/assets/de48f042-8482-45a2-8461-2659484547a6" />
+
+
 ---
 
 ## Step 6: Connect to the VM using Console → “SSH” button
@@ -158,6 +170,8 @@ export IMG_PATH="${AR_HOST}/${PROJECT_ID}/${REPO}/${IMAGE}"
 # Point gcloud to the right project (we'll install gcloud next)
 echo "${PROJECT_ID}"
 ```
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/8dfa60d1-cb38-4f7b-948f-7c613cdb61e9" />
+
 
 ---
 
@@ -171,7 +185,7 @@ gcloud compute ssh ar-pay-demo --zone=$ZONE
 Then inside the VM:
 ```bash
 sudo apt update
-sudo apt install -y docker.io
+sudo apt install -y docker.io (or) sudo apt-get install -y docker.io ca-certificates gnupg
 sudo usermod -aG docker $USER
 newgrp docker
 ```
@@ -179,6 +193,11 @@ Verify installation:
 ```bash
 docker --version
 ```
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/49e84462-c311-422d-9e7b-70df6792bb7b" />
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/06056602-8ec5-4db4-b120-34f014c5a3e5" />
+
+
 ---
 
 ## 🧱 Step 7: Build, Tag, and Push Docker Image to Artifact Registry
@@ -216,6 +235,17 @@ docker push $IMG_PATH:v1
 ```
 
 ✅ If successful, verify from GCP Console → Artifact Registry → your repository.
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/1c7f9819-ba86-4bc1-a62b-0e1cf0002cac" />
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/304a3658-245b-45f6-a1c9-b059ea78b26e" />
+
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/4bf67f0b-ad3c-4871-8ba8-760e9843b384" />
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/c8d403a0-7d30-4abb-a45b-fc4afaf21355" />
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/116db953-d038-4b37-85e3-c0f9ce89a183" />
 
 ---
 
@@ -264,5 +294,16 @@ gcloud artifacts repositories delete $REPO_NAME --location=$REGION
 # Delete service account
 gcloud iam service-accounts delete ar-demo@$PROJECT_ID.iam.gserviceaccount.com
 ```
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/49ec1bd6-8471-4799-96c5-c4f44c566123" />
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/0f2f8150-6e00-423a-832a-97239879d9b9" />
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/ae3c2e31-cd08-42dc-9840-eb987fe10990" />
+
+
+
+
+
 ---
 
