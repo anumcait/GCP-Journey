@@ -144,7 +144,7 @@ gcloud compute instances create ar-pay-demo \
 gcloud compute instances list
 ```
 
-<img width="1049" height="521" alt="image" src="https://github.com/user-attachments/assets/de48f042-8482-45a2-8461-2659484547a6" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/de48f042-8482-45a2-8461-2659484547a6" />
 
 
 ---
