@@ -67,14 +67,6 @@ GKE provides:
 
 ---
 
-## 6. Learning Strategy Tips
-- Understand **core concepts** (Pods, ReplicaSets, Deployments, Services, Ingress).
-- Avoid copy-pasting blindly; **practice deploying apps**.
-- Use mini-projects to simulate real-world scenarios.
-- Watch for Kubernetes updates and experiment with new features.
-
----
-
-## 7. References
+## 6. References
 - [GKE Official Documentation](https://cloud.google.com/kubernetes-engine)
 - [Kubernetes Official Documentation](https://kubernetes.io/docs/)
