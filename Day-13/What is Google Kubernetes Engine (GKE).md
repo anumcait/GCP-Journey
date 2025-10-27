@@ -65,6 +65,16 @@ GKE provides:
 6. Use **Ingress** or **Services** for load balancing.
 7. Monitor cluster health using Google Cloud Console and Metrics.
 
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/b87a9c9b-05e2-414a-ac1f-57578e464f1a" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/048ef647-e86d-4706-a2b8-12479de4f758" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/4a1e57f8-a64b-43c2-9a6f-9b8b45a7320f" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/93665b32-4f49-4497-8cae-e5fb35484552" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/9f265b22-2eea-431f-92b8-e946dbd9aa57" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/6313d726-f1ff-42e2-ba82-01314548b638" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/a144bf7f-634f-4607-a38c-083a561ab73b" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/4f915032-eb28-46bd-bc7a-56ad481df0d4" />
+
+
 ---
 
 ## 6. References
