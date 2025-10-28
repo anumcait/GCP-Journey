@@ -195,7 +195,18 @@ If you want test with sample nginx application
 ```bash
 kubectl create deployment nginx --image=nginx
 ```
-<img width="1050" height="81" alt="image" src="https://github.com/user-attachments/assets/377bc959-1c44-44fe-b20f-8e5d4524a13e" />
+<img width="1050" height="182" alt="image" src="https://github.com/user-attachments/assets/1fb48fea-83a5-4dbe-b255-e2a93e6d30a5" />
+<img width="1050" height="92" alt="image" src="https://github.com/user-attachments/assets/7d3b6551-5114-45b3-b2b6-05f0fd0fe82f" />
+
+Now Copy source code to the GCP Terminal
+
+```bash
+git clone https://github.com/dockersamples/example-voting-app.git
+cd example-voting-app
+```
+
+<img width="1050" height="483" alt="image" src="https://github.com/user-attachments/assets/3f740e70-d0d4-42a1-b8bb-48c862a331d6" />
+
 
 
 
