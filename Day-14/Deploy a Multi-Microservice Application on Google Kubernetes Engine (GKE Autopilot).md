@@ -193,15 +193,15 @@ kubectl get nodes
 ```
 > Initially you will get no resources found , because no deployent is there yet
 
-<img width="1050" height="519" alt="image" src="https://github.com/user-attachments/assets/ebc0f174-a798-4aa2-bef3-70bf922c9367" />
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/ebc0f174-a798-4aa2-bef3-70bf922c9367" />
 
 If you want test with sample nginx application
 
 ```bash
 kubectl create deployment nginx --image=nginx
 ```
-<img width="1050" height="182" alt="image" src="https://github.com/user-attachments/assets/1fb48fea-83a5-4dbe-b255-e2a93e6d30a5" />
-<img width="1050" height="92" alt="image" src="https://github.com/user-attachments/assets/7d3b6551-5114-45b3-b2b6-05f0fd0fe82f" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/1fb48fea-83a5-4dbe-b255-e2a93e6d30a5" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/7d3b6551-5114-45b3-b2b6-05f0fd0fe82f" />
 
 Now Copy source code to the GCP Terminal
 
@@ -210,7 +210,7 @@ git clone https://github.com/dockersamples/example-voting-app.git
 cd example-voting-app
 ```
 
-<img width="1050" height="483" alt="image" src="https://github.com/user-attachments/assets/3f740e70-d0d4-42a1-b8bb-48c862a331d6" />
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/3f740e70-d0d4-42a1-b8bb-48c862a331d6" />
 
 
 
@@ -248,12 +248,31 @@ pod/worker-xxxxx                    1/1     Running
 pod/redis-xxxxx                     1/1     Running
 pod/db-xxxxx                        1/1     Running
 ```
+
+
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/fff479ab-d655-42af-88d8-a4defe892421" />
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/f9ea87e0-4beb-43d9-98c6-f81b9d1ff8cd" />
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/91298406-8ce7-412a-8e70-876ed3a51be0" />
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/0dd61185-4eaa-4461-a05e-3e33bc743ab9" />
+
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/05fea5d9-b0d5-4573-bd6b-c093a466176a" />
+
+---
+
 ## 🌐 Step 7 — Expose Services using Ingress
 
 1️⃣ Create Namespace for Ingress Controller
 ```bash
 kubectl create namespace ingress-nginx
 ```
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/2d6aaaae-05e3-4a5e-a31a-ba15fabca4a6" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/9a842d83-91ed-4d42-a184-c7eee6b37ec7" />
+
 2️⃣ Install NGINX Ingress Controller using Helm
 ```bash
 helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx
@@ -266,6 +285,9 @@ Check status:
 kubectl get pods -n ingress-nginx
 ```
 Wait until all pods are Running.
+
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/3fc46b09-0792-4d15-8f1f-b8a406cc0798" />
 
 3️⃣ Create Ingress Resource for `vote` App
 
@@ -288,6 +310,8 @@ spec:
             port:
               number: 8080
 ```
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/58801ccb-c2bf-4061-ad37-fe588a3a23ce" />
+
 Apply it:
 ```bash
 kubectl apply -f vote-ingress.yaml
@@ -305,6 +329,12 @@ vote-ingress    nginx   34.118.229.36    80
 
 Now, visit http://<EXTERNAL-IP> to access your app.
 
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/eedfe42f-0d06-4b64-b322-d17313568cce" />
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/ae73cb86-272f-4ed1-b0a5-5397f5d2cf7f" />
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/e509b4be-592b-4d9a-8a26-275f42a1b14b" />
+
 ---
 
 ## 🧹 Step 8 — Clean Up Resources
@@ -316,6 +346,9 @@ gcloud container clusters delete demo-autopilot-cluster \
 ```
 
 > 💰 Estimated cost: ~$1–2 for the full demo.
+
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/b88a77c5-b619-475c-8589-6895eed5dad2" />
+
 
 ---
 
