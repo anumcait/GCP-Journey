@@ -6,11 +6,7 @@ We’ll deploy a multi-language microservice application (the Docker voting app)
 Autopilot manages the control plane and nodes automatically — meaning you only focus on your workloads, not infrastructure.
 
 ---
-<img width="696" height="542" alt="image" src="https://github.com/user-attachments/assets/78d90545-d15b-46e9-9a60-7fd66ec28591" />
-
-
-
-
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/78d90545-d15b-46e9-9a60-7fd66ec28591" />
 
 ## 🏗 Application Architecture
 
@@ -57,6 +53,8 @@ Enable the container API for GKE:
 gcloud services enable container.googleapis.com
 ```
 
+
+
 ## ☁️ Step 2 — Create GKE Autopilot Cluster
 
 Run the following command to create an Autopilot cluster:
@@ -66,6 +64,8 @@ gcloud container clusters create-auto demo-autopilot-cluster \
 ```
 > ⏱️ This may take 10–15 minutes.  
 > Autopilot manages scaling and node provisioning automatically.
+
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/a2484bea-dfaf-4648-a9f7-0f369bd7422c" />
 
 ---
 
@@ -147,6 +147,11 @@ To stop:
 ```bash
 docker compose down
 ```
+
+<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/aac3d876-8b2d-4628-9eb3-09ac0739d236" />
+<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/e7164164-717d-4a29-a549-d79aa2b38632" />
+<img width="500" height="500" alt="image" src="https://github.com/user-attachments/assets/929f618b-1b77-4257-95ed-8d598f7a5cf7" />
+
 ---
 
 ## ☸️ Step 6 — Deploy on Kubernetes (GKE Autopilot)
@@ -227,6 +232,8 @@ This folder includes:
 - db-service.yaml
 
 > 💡 You may see warnings about CPU/memory limits — that’s because Autopilot prefers defined resource limits.
+
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/7b11dbea-99d6-4165-83f8-58e2a5f28e67" />
 
 Verify Deployments:
 ```bash
