@@ -85,6 +85,10 @@ echo -n "YOUR_SECRET_KEY" | gcloud secrets versions add my-api-key --data-file=-
 - The echo -n command pipes your secret string directly into Secret Manager.
 - Secret versions help maintain history and support rotation without downtime.
 
+
+ <img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/ca28b469-75ff-4e42-9613-823eba758bdd" />
+
+
 ### 🧩 Step 4 – Grant Access with IAM
 gcloud secrets add-iam-policy-binding my-api-key \
   --member="serviceAccount:myapp@project-id.iam.gserviceaccount.com" \
