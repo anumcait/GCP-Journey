@@ -55,6 +55,7 @@ Before creating or managing secrets, enable the API:
 ```bash
 gcloud services enable secretmanager.googleapis.com
 ```
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/760fcf98-71cb-4240-8c8c-f9d9c9df0377" />
 
 ### 🧩 Step 2 – Create a Secret
 
@@ -68,12 +69,16 @@ gcloud secrets create my-api-key \
 - my-api-key → Name of the secret.
 - --replication-policy="automatic" → Google replicates data securely across regions.
 
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/ec880128-c111-4f00-822a-ea0584294edf" />
+
 ### 🧩 Step 3 – Add a Secret Version
 
 Add the actual secret value to the secret. Every time you update the value, it creates a new version.
 ```bash
 echo -n "YOUR_SECRET_KEY" | gcloud secrets versions add my-api-key --data-file=-
 ```
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/8cb3304e-fc5e-41ce-8127-bfbe120c06e1" />
+
 
 **Explanation:**
 
@@ -127,3 +132,32 @@ Manual Rotation Example:
 ```bash
 echo -n "NEW_SECRET_KEY" | gcloud secrets versions add my-api-key --data-file=-
 ```
+Automatic Rotation Example:
+```bash
+gcloud secrets update my-api-key \
+  --rotation-period="30d" \
+  --next-rotation-time="2025-11-01T00:00:00Z"
+```
+
+**Tip:** Always ensure your application dynamically fetches secrets so it doesn’t require redeployment after rotation.
+
+---
+
+## 🧾 Auditing Secret Access
+
+Every interaction with Secret Manager is logged using Cloud Audit Logs.
+**You can track:**
+- Who accessed the secret
+- When it was accessed
+- From which service or account
+
+**View Audit Logs:**
+1. Go to Google Cloud Console → Logging → Logs Explorer
+2. Filter by resource.type="secretmanager_secret"
+3. Check access and modification events
+
+**Use Case:**
+Helps detect unauthorized access and maintain compliance.
+
+---
+
