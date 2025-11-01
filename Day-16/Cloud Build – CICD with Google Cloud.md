@@ -56,15 +56,18 @@ gcloud services enable \
 
 > If you prefer Container Registry (legacy), enable containerregistry.googleapis.com instead of Artifact Registry.
 
-## 2) Create Artifact Registry (recommended)
+## 2) Create an Artifact Registry (to store Docker images)
 
 Artifact Registry is the recommended modern registry.
 ```bash
-gcloud artifacts repositories create my-repo \
+gcloud artifacts repositories create my-app-repo \
   --repository-format=docker \
   --location=us-central1 \
-  --description="Docker repo for cloud build"
+  --description="Docker repository for my Cloud Build demo"
 ```
+✅ This will create a private Docker image repo under Artifact Registry.
+You’ll use it to store your image after Cloud Build builds it.
+
 💡 Note the repo location (e.g., us-central1-docker.pkg.dev/PROJECT_ID/my-repo/...) — you will use this in your cloudbuild.yaml.
 
 ---
