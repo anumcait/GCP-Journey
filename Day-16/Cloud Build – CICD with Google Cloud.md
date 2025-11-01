@@ -1,4 +1,4 @@
-<img width="1158" height="591" alt="image" src="https://github.com/user-attachments/assets/041e5ffe-261b-4a07-ae20-f664de123a87" /><img width="1158" height="591" alt="image" src="https://github.com/user-attachments/assets/e106b83a-4b0c-4878-92c7-660bc48b10c5" /># 🚀 Day 16: Cloud Build – CI/CD with Google Cloud
+# 🚀 Day 16: Cloud Build – CI/CD with Google Cloud
 
 Here  we will learn how to **automate builds, tests, and deployments** using **Google Cloud Build** — Google’s managed CI/CD platform.
 
