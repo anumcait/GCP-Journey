@@ -57,7 +57,7 @@ gcloud services enable \
   container.googleapis.com \
   iam.googleapis.com
 ```
-<img width="1004" height="496" alt="image" src="https://github.com/user-attachments/assets/641d56c7-a229-44cb-85cc-19e4602647b7" />
+<img width="700" height="500" alt="image" src="https://github.com/user-attachments/assets/641d56c7-a229-44cb-85cc-19e4602647b7" />
 
 > If you prefer Container Registry (legacy), enable containerregistry.googleapis.com instead of Artifact Registry.
 
