@@ -72,7 +72,7 @@ You’ll use it to store your image after Cloud Build builds it.
 
 ---
 
-3) Grant Cloud Build Permissions (Service Account)
+## 3) Grant Cloud Build Permissions (Service Account)
 
 Cloud Build uses a service account: PROJECT_NUMBER@cloudbuild.gserviceaccount.com. Grant it permissions to push to Artifact Registry and to cluster-admin (if deploying to GKE).
 
@@ -90,136 +90,133 @@ gcloud projects add-iam-policy-binding YOUR_PROJECT_ID \
   --member="serviceAccount:$(gcloud projects describe YOUR_PROJECT_ID --format='value(projectNumber)')@cloudbuild.gserviceaccount.com" \
   --role="roles/container.developer"
 ```
+### Grant Cloud Build service account permissions
+```bash
+PROJECT_NUMBER=$(gcloud projects describe cloud-build-project-476905 --format='value(projectNumber)')
+gcloud projects add-iam-policy-binding cloud-build-project-476905 --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" --role="roles/artifactregistry.writer"
+gcloud projects add-iam-policy-binding cloud-build-project-476905 --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" --role="roles/container.developer"
+gcloud projects add-iam-policy-binding cloud-build-project-476905 --member="serviceAccount:${PROJECT_NUMBER}@cloudbuild.gserviceaccount.com" --role="roles/secretmanager.secretAccessor"
+```
 
-4) Sample App (repo structure)
+## 4) Sample App (repo structure)
 
 Create a simple sample app — this is what you’ll push to GitHub.
 
 ```pgsql
-cloudbuild-demo/
-├── app/
-│   ├── server.js
-│   ├── package.json
-├── Dockerfile
-└── cloudbuild.yaml
+google-cloud-build/             # repo root (GitHub)
+├── index.js                    # sample Node.js app entry
+├── package.json                # npm metadata & dependencies
+├── Dockerfile                  # docker build instructions
+├── cloudbuild.yaml             # Cloud Build pipeline (build + push + deploy)
+├── deployment.yaml             # K8s Deployment manifest (applied by Cloud Build)
+├── service.yaml                # K8s Service (LoadBalancer) manifest
+└── README.md                   # (this file)
 ```
-`app/server.js`
-```js
-const express = require('express');
-const app = express();
-const port = process.env.PORT || 8080;
-app.get('/', (req, res) => res.send('Hello from Cloud Build CI/CD!'));
-app.listen(port, () => console.log(`Listening on ${port}`));
-```
-
-`package.json`
+### `package.json`
 ```json
 {
   "name": "cloudbuild-demo",
   "version": "1.0.0",
-  "main": "server.js",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
   "dependencies": {
     "express": "^4.18.2"
   }
 }
 ```
 
-`Dockerfile`
+### `index.js` (simple server)
+```js
+const express = require('express');
+const app = express();
+const PORT = process.env.PORT || 8080;
+app.get('/', (req, res) => res.send('🚀 Hello from Cloud Build demo!'));
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));
+```
+
+### `Dockerfile`
 ```dockerfile
-FROM node:18-alpine
+FROM node:18
 WORKDIR /app
-COPY app/package*.json ./
+COPY package*.json ./
 RUN npm install --production
-COPY app/ ./
+COPY . .
 EXPOSE 8080
-CMD ["node", "server.js"]
+CMD ["npm", "start"]
 ```
-## 5) cloudbuild.yaml — Basic: Build & Push image to Artifact Registry
 
-Place this at repo root (cloudbuild.yaml):
+### `deployment.yaml`
 ```yaml
-# cloudbuild.yaml — Build and push to Artifact Registry
-substitutions:
-  _REPO_LOCATION: "us-central1"
-  _REPO_NAME: "my-repo"
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demo-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: demo-app
+  template:
+    metadata:
+      labels:
+        app: demo-app
+    spec:
+      containers:
+      - name: demo-app
+        image: us-central1-docker.pkg.dev/cloud-build-project-476905/my-app-repo/myapp:latest
+        ports:
+        - containerPort: 8080
+```
 
+### `service.yaml`
+```yaml
+apiVersion: v1
+kind: Service
+metadata:
+  name: demo-app-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: demo-app
+  ports:
+  - port: 80
+    targetPort: 8080
+```
+
+### `cloudbuild.yaml` (final working version)
+```yaml
 steps:
-  - id: "Build"
-    name: 'gcr.io/cloud-builders/docker'
-    args:
-      [
-        'build',
-        '-t',
-        '${_REPO_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/myapp:$SHORT_SHA',
-        '.'
-      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build', '-t', 'us-central1-docker.pkg.dev/$PROJECT_ID/my-app-repo/myapp:latest', '.']
 
-  - id: "Push"
-    name: 'gcr.io/cloud-builders/docker'
-    args:
-      [
-        'push',
-        '${_REPO_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/myapp:$SHORT_SHA'
-      ]
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'us-central1-docker.pkg.dev/$PROJECT_ID/my-app-repo/myapp:latest']
+
+  - name: 'gcr.io/cloud-builders/gcloud'
+    args: ['container', 'clusters', 'get-credentials', 'my-cluster', '--zone', 'us-central1-a']
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster'
+    args: ['apply', '-f', 'deployment.yaml']
+
+  - name: 'gcr.io/cloud-builders/kubectl'
+    env:
+      - 'CLOUDSDK_COMPUTE_ZONE=us-central1-a'
+      - 'CLOUDSDK_CONTAINER_CLUSTER=my-cluster'
+    args: ['apply', '-f', 'service.yaml']
 
 images:
-  - '${_REPO_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/myapp:$SHORT_SHA'
-```
-Key points:
+  - 'us-central1-docker.pkg.dev/$PROJECT_ID/my-app-repo/myapp:latest'
 
-- $SHORT_SHA is provided by Cloud Build — great for image tagging.
-- You can customize _REPO_LOCATION and _REPO_NAME via trigger substitutions.
-
-6) cloudbuild.yaml — Bonus: Build → Push → Deploy to GKE
-
-If you want CI→CD: build, push, then update a Deployment in GKE:
-```yaml
-# cloudbuild-gke.yaml — Build, push, and deploy to GKE
-substitutions:
-  _REPO_LOCATION: "us-central1"
-  _REPO_NAME: "my-repo"
-  _CLUSTER_NAME: "my-gke-cluster"
-  _CLUSTER_ZONE: "us-central1-a"
-  _K8S_DEPLOYMENT: "myapp-deployment"
-  _K8S_CONTAINER: "myapp-container"
-
-steps:
-  - id: "Build"
-    name: 'gcr.io/cloud-builders/docker'
-    args:
-      ['build', '-t', '${_REPO_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/myapp:$SHORT_SHA', '.']
-
-  - id: "Push"
-    name: 'gcr.io/cloud-builders/docker'
-    args:
-      ['push', '${_REPO_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/myapp:$SHORT_SHA']
-
-  - id: "Get credentials"
-    name: 'gcr.io/cloud-builders/gcloud'
-    entrypoint: bash
-    args:
-      [
-        '-c',
-        'gcloud container clusters get-credentials ${_CLUSTER_NAME} --zone ${_CLUSTER_ZONE} --project $PROJECT_ID'
-      ]
-
-  - id: "kubectl-set-image"
-    name: 'gcr.io/cloud-builders/kubectl'
-    args:
-      [
-        'set',
-        'image',
-        'deployment/${_K8S_DEPLOYMENT}',
-        '${_K8S_CONTAINER}=${_REPO_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/myapp:$SHORT_SHA',
-        '--namespace=default'
-      ]
-
-images:
-  - '${_REPO_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPO_NAME}/myapp:$SHORT_SHA'
-
+options:
+  logging: CLOUD_LOGGING_ONLY
 ```
 
-Notes:
+#### Notes:
 
 - gcloud container clusters get-credentials obtains kubeconfig for kubectl.
 - Cloud Build service account must have roles/container.developer (or more restrictive role with getCredentials rights and ability to patch deployments).
@@ -227,7 +224,7 @@ Notes:
 
 ---
 
-7) Connect GitHub → Cloud Build (Trigger)
+## 5) Connect GitHub → Cloud Build (Trigger)
 Via Cloud Console (recommended)
 
 1. Go to Cloud Console → Cloud Build → Triggers.
@@ -253,22 +250,32 @@ After setup, pushing to main will start Cloud Build automatically.
 
 ---
 
-8) Run & Verify a Build
+## 6. Troubleshooting & fixes you applied (log highlights)
 
-You can trigger manually:
-```bash
-# trigger a build using current repo
-gcloud builds submit --config=cloudbuild.yaml --substitutions=_REPO_LOCATION=us-central1,_REPO_NAME=my-repo
-```
-List builds:
-```bash
-gcloud builds list --limit=10
-```
+- **Error:** `npm JSON.parse Unexpected end of JSON input`  
+  **Fix:** `package.json` was empty/corrupt — replaced with valid JSON and re-committed.
 
-Describe a build for logs & status:
-```bash
-gcloud builds describe BUILD_ID
-```
+- **Error:** `if 'build.service_account' is specified... must specify logs bucket`  
+  **Fix:** Set `options.logging: CLOUD_LOGGING_ONLY` in `cloudbuild.yaml` to avoid requiring a logs bucket for custom SA use.
+
+- **Error:** `deployments.apps "demo-app" not found`  
+  **Fix:** Add `deployment.yaml` and `service.yaml` to repo and switch Cloud Build step from `kubectl set image` to `kubectl apply -f deployment.yaml` / `apply -f service.yaml`. Alternatively, created the deployment manually once using `kubectl apply`.
+
+- **Error:** `No cluster is set` in kubectl step  
+  **Fix:** Added `gcloud container clusters get-credentials` step before `kubectl` and added `env` values (`CLOUDSDK_COMPUTE_ZONE` and `CLOUDSDK_CONTAINER_CLUSTER`) to the kubectl steps so each step knows the cluster context.
+
+---
+
+## 7. Verification (how you confirmed success)
+1. Cloud Build logs showed build & push completed with `digest: sha256:...`  
+2. `kubectl get pods` showed `demo-app` pod in `Running` state.  
+3. `kubectl get svc` showed `demo-app-service` with an **EXTERNAL-IP** (LoadBalancer).  
+4. Opening `http://<EXTERNAL-IP>` in browser showed the running app response.  
+5. Future commits automatically triggered Cloud Build (if trigger configured) and deployments updated the running app.
+
 View logs in Cloud Console: Cloud Build → History (click a build → view logs).
+
+---
+
 
 
