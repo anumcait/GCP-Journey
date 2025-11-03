@@ -116,6 +116,13 @@ export GOOGLE_APPLICATION_CREDENTIALS="key.json"
 
 ```
 
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/5ffde048-a944-4fee-acdc-dfb168aea342" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/86125e2f-3775-4c09-ab8e-d5d2dc7b6cc0" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/8ea6c93c-0dd0-4f61-8125-cb3c87246278" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/d4db3f20-a4e1-4769-bec0-c48698745603" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/c59c00a2-0096-4bb5-8881-ad1306400a3e" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/fa73b985-eeb0-4fd5-864e-cb4b4ad955f7" />
+
 ---
 
 ## 🧩 Terraform Configuration Files for GCP
@@ -256,6 +263,16 @@ Changes to Outputs:
 ✅ VM and Firewall were created successfully.
 ⚠️ Bucket creation gave a 409 Conflict because it already exists — this is harmless. You can rename and reapply if needed.
 
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/28bbf440-9698-451b-bfbf-459e7ab5ba9c" />
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/eac5ca67-00ed-476f-99f4-b41e1599f072" />
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/a01be205-1fce-43f5-aa0d-47828cbc447b" />
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/aab68ef1-c01f-4898-b20b-277d30bae02d" />
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/b66dcdb3-dbe3-4236-af24-d4d29fb7a8ab" />
+
 ---
 
 ## ✅ Verify in:
@@ -266,10 +283,20 @@ Changes to Outputs:
 
 ---
 
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/9e3907c9-2f6e-4bdd-8045-2d08fd2b7873" />
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/9de45c15-fcfe-452c-a43e-2c86a33735c8" />
+
+
 **Step 4: Destroy**
 ```
 terraform destroy -auto-approve
 ```
 Removes everything cleanly.
+
+<img width="500" height="300" alt="image" src="https://github.com/user-attachments/assets/dc714b66-eb92-4ec4-befe-419ac9ab14af" />
+<img width="1049" height="300" alt="image" src="https://github.com/user-attachments/assets/a606b7c5-f168-45f7-b31a-fcc078abc648" />
+
+
 
 ---
