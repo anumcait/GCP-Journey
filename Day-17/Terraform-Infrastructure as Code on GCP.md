@@ -242,6 +242,22 @@ Creates all resources in GCP.
 
 ---
 
+## 🧩 Output
+
+Example output:
+
+Plan: 3 to add, 0 to change, 0 to destroy.
+```
+Changes to Outputs:
+  + bucket_name  = "aliveni-tf-demo-bucket"
+  + vm_public_ip = (known after apply)
+```
+
+✅ VM and Firewall were created successfully.
+⚠️ Bucket creation gave a 409 Conflict because it already exists — this is harmless. You can rename and reapply if needed.
+
+---
+
 ## ✅ Verify in:
 
 - GCP Console → Compute Engine → VM instances
