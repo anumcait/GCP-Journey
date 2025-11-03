@@ -166,6 +166,8 @@ resource "google_compute_firewall" "allow_ssh" {
   source_ranges = ["0.0.0.0/0"]
 }
 ```
+---
+
 **🔹 variables.tf**
 ```
 variable "project_id" {
@@ -181,5 +183,77 @@ variable "zone" {
   default = "asia-south1-a"
 }
 ```
+---
 
+**🔹 outputs.tf**
+```
+output "vm_public_ip" {
+  value = google_compute_instance.demo_vm.network_interface[0].access_config[0].nat_ip
+}
 
+output "bucket_name" {
+  value = google_storage_bucket.demo_bucket.name
+}
+```
+---
+
+**🔹 backend.tf – Store State File in GCS**
+```
+terraform {
+  backend "gcs" {
+    bucket = "my-terraform-state-bucket"
+    prefix = "terraform/state"
+  }
+}
+```
+
+| 💡 Create bucket once manually:
+```bash
+gsutil mb -l asia-south1 gs://my-terraform-state-bucket/
+```
+---
+
+## 🧭 Running Terraform
+
+**Step 1: Initialize**
+```
+terraform init
+```
+
+Downloads providers and configures backend.
+
+---
+
+**Step 2: Plan**
+```
+terraform plan
+```
+
+Previews what Terraform will do.
+
+---
+
+**Step 3: Apply**
+
+```
+terraform apply -auto-approve
+```
+Creates all resources in GCP.
+
+---
+
+## ✅ Verify in:
+
+- GCP Console → Compute Engine → VM instances
+- GCP Console → Storage → Buckets
+- GCP Console → VPC → Firewall rules
+
+---
+
+**Step 4: Destroy**
+```
+terraform destroy -auto-approve
+```
+Removes everything cleanly.
+
+---
