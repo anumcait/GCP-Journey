@@ -49,6 +49,47 @@ You just package your app into a Docker container, push it to Google Cloud, and 
 
 ### 🧭 Steps to Deploy a Container
 
+#### Create a simple app (if you haven’t already)
+
+Example app.js:
+```
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+  res.send("Hello from Cloud Run!");
+});
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+```
+#### Create a Dockerfile in the same folder
+```
+# Use official Node.js image
+FROM node:18
+
+# Create app directory
+WORKDIR /usr/src/app
+
+# Copy package files (if any)
+COPY package*.json ./
+
+# Install dependencies
+RUN npm install --only=production
+
+# Copy app source
+COPY . .
+
+# Expose port
+EXPOSE 8080
+
+# Start the app
+CMD ["node", "app.js"]
+```
+
+---
+
+
 #### 1️⃣ Build your container image
 You can use **Cloud Build** to create a container and store it in **Google Container Registry**.
 
