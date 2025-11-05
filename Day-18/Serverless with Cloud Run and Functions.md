@@ -49,6 +49,33 @@ You just package your app into a Docker container, push it to Google Cloud, and 
 
 ### 🧭 Steps to Deploy a Container
 
+gcloud config set account alivenidevops@gmail.com
+
+gcloud config set project cloud-run-functions-477308
+
+```
+gcloud services enable cloudbuild.googleapis.com
+gcloud services enable storage.googleapis.com
+```
+```
+PROJECT_ID=$(gcloud config get-value project)
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+  --member=serviceAccount:$PROJECT_ID@cloudbuild.gserviceaccount.com \
+  --role=roles/storage.admin
+
+  ```
+
+```
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+  --member=user:YOUR_EMAIL@gmail.com \
+  --role=roles/serviceusage.serviceUsageConsumer
+
+gcloud projects add-iam-policy-binding $PROJECT_ID \
+  --member=user:YOUR_EMAIL@gmail.com \
+  --role=roles/cloudbuild.builds.editor
+
+```
+
 #### Create a simple app (if you haven’t already)
 
 Example app.js:
