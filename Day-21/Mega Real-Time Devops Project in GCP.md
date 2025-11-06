@@ -1,4 +1,4 @@
-# Day-22: Real-Time GCP Mega DevOps Project – End-to-End E-Commerce System
+# Day-21: Real-Time GCP Mega DevOps Project – End-to-End E-Commerce System
 
 This mega project consolidates your **21 days of GCP and DevOps learning** into a **real-world, production-ready workflow**.
 
